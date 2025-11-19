@@ -2,18 +2,31 @@
   --background: rgb(22, 22, 22);
 } 
 
-body {
+html, body {
   margin: 0;
+  padding: 0;
+  height: 100%;
 }
 
-/* Hintergrundbild */
+/* Hintergrund-Container */
 .TitlePicture {
-  position: fixed;      /* oder absolute, aber dann top/left setzen */
+  position: fixed;   /* bleibt stehen, egal wie gescrollt wird */
   top: 0;
   left: 0;
   width: 100%;
-  z-index: -1;          /* ganz nach hinten */
+  height: 100vh;     /* genau eine Bildschirmhöhe */
+  z-index: -1;       /* hinter allem anderen */
+  /* falls das Bild größer ist, nix scrollt raus */
 }
+
+/* Das Bild selbst */
+.TitlePicture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;   /* füllt den Bildschirm, schneidet ggf. etwas ab */
+  display: block;      /* keine weißen Ränder */
+}
+
 
 /* Tabelle / Inhalt */
 table {
