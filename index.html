@@ -16,6 +16,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Allura&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css"></link>
+
+  <link rel="shortcut icon" href="Ring.png" />
 </head>
 
 <body>
@@ -24,16 +26,20 @@
   <header class="Hero" aria-label="Hero">
     <!-- wichtig: Pfad anpassen -->
     <img class="Hero__img" src="Pic.jpeg" alt="" aria-hidden="true" />
+
     <div class="Hero__overlay" aria-hidden="true"></div>
 
     <div class="Hero__content">
-      <div class="Hero__badge">Lisa &amp; Paul</div>
+
+      <div class="Hero__badge2">Einladung</div>
       <h1 class="Hero__title">Wir sagen Ja!</h1>
 
       <p class="Hero__subtitle">
         Aus zwei wird ein Wir – und das möchten wir gemeinsam mit euch feiern.
         Wir laden euch herzlich ein, diesen besonderen Tag mit uns zu verbringen.
       </p>
+
+    </br><div class="Hero__badge">Lisa &amp; Paul</div>
 
 <!--       <div class="Hero__actions">
         <a class="Button Button--primary" href="#rsvp">Seid ihr dabei?</a>
@@ -54,7 +60,7 @@
         <div class="Flow">
 
           <article class="FlowItem">
-            <div class="FlowItem__icon" aria-hidden="true">📍</div>
+            <div class="FlowItem__icon" aria-hidden="true">💍</div>
             <div>
               <h3 class="H3">Trauung</h3>
 
@@ -237,51 +243,64 @@
 
   </main>
 
-  <script>
-    // Deine Web-App URL aus Google Apps Script
-    const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbwXBNCqZ535Z1pOjio4R2db6xfArxtwfDmyoWZMDamKIPCIBat5GxgIci_mA-wgvOY/exec";
+<script>
+  // Deine Web-App URL aus Google Apps Script
+  const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxsJWb0C6WR1QW45FZc0dzB0YjVFPLa-FMiWxqgt5J_ETdni93sHtjKASdAFPkpN_UK/exec";
 
-    function setStatus(msg, kind){
-      const el = document.getElementById("formStatus");
-      el.textContent = msg || "";
-      el.dataset.kind = kind || "";
+  function setStatus(msg, kind){
+    const el = document.getElementById("formStatus");
+    el.textContent = msg || "";
+    el.dataset.kind = kind || "";
+  }
+
+  function setLoading(isLoading){
+    const btn = document.getElementById("submitBtn");
+    btn.disabled = !!isLoading;
+    btn.dataset.loading = isLoading ? "true" : "false";
+  }
+
+  async function sendForm() {
+    const form = document.getElementById("rsvpForm");
+
+    // ✅ Stabil: Checkboxen direkt aus .checked lesen (immer Ja/Nein)
+    const payload = {
+      name: (form.elements["name"]?.value || "").trim(),
+      trauung: form.elements["trauung"]?.checked ? "Ja" : "Nein",
+      sektempfang: form.elements["sektempfang"]?.checked ? "Ja" : "Nein",
+      abendessen: form.elements["abendessen"]?.checked ? "Ja" : "Nein",
+      ts: new Date().toISOString()
+    };
+
+    if(!payload.name){
+      setStatus("Bitte Namen eintragen 🙂", "err");
+      return;
     }
 
-    function setLoading(isLoading){
-      const btn = document.getElementById("submitBtn");
-      btn.disabled = !!isLoading;
-      btn.dataset.loading = isLoading ? "true" : "false";
-    }
+    setStatus("", "");
+    setLoading(true);
 
-    async function sendForm() {
-      const form = document.getElementById("rsvpForm");
-      const formData = new FormData(form);
-
-      // Nicht angehakte Checkboxen explizit als "Nein" mitsenden
-      ["trauung","sektempfang","abendessen"].forEach(name => {
-        if (!formData.has(name)) formData.append(name, "Nein");
+    try {
+      // ✅ Wir schicken JSON, damit Apps Script nicht bei FormData rummackt
+      const res = await fetch(WEBAPP_URL, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(payload)
       });
 
-      setStatus("", "");
-      setLoading(true);
+      const text = await res.text();
+      console.log("Antwort vom Server:", text);
 
-      try {
-        const res = await fetch(WEBAPP_URL, { method: "POST", body: formData });
-
-        // Apps Script antwortet manchmal mit Text/HTML – ist okay, wir loggen’s nur
-        const text = await res.text();
-        console.log("Antwort vom Server:", text);
-
-        setStatus("Danke! Rückmeldung ist angekommen. ❤️", "ok");
-        form.reset();
-      } catch (err) {
-        console.error("Fehler beim Senden:", err);
-        setStatus("Uff… hat nicht geklappt. Bitte später nochmal versuchen.", "err");
-      } finally {
-        setLoading(false);
-      }
+      setStatus("Danke! Rückmeldung ist angekommen. ❤️", "ok");
+      form.reset();
+    } catch (err) {
+      console.error("Fehler beim Senden:", err);
+      setStatus("Uff… hat nicht geklappt. Bitte später nochmal versuchen.", "err");
+    } finally {
+      setLoading(false);
     }
-  </script>
+  }
+</script>
+
 
 </body>
 </html>

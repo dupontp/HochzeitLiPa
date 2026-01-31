@@ -106,14 +106,21 @@
 
     .Hero__badge{
       display:inline-block;
-      padding: 7px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(201,122,134,.14);
-      background: rgba(246,199,209,.32);
+      padding: 7px 0px;
       color: rgba(43,35,38,.75);
       letter-spacing: .18em;
       text-transform: uppercase;
-      font-size: 12px;
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .Hero__badge2{
+      display:inline-block;
+      padding: 7px 0px;
+      color: rgba(43,35,38,.75);
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      font-size: 24px;
       font-weight: 800;
     }
 
