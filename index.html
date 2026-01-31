@@ -1,159 +1,287 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hochzeit von Lisa & Paul</title>
-    <link rel="stylesheet" href="style.css"></link>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hochzeit von Lisa & Paul</title>
 
-    <meta http-equiv="ScreenOrientation" content="autoRotate:disabled">
+  <meta name="theme-color" content="#fff7fb" />
+  <meta http-equiv="ScreenOrientation" content="autoRotate:disabled" />
 
-    <link rel="icon" type="image/png" href="Resources/FG-Icon.png">
-  </head>
+  <link rel="icon" type="image/png" href="Resources/FG-Icon.png" />
 
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Allura&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
+  <link rel="stylesheet" href="style.css"></link>
+</head>
 
-  <body onresize="ResizeFunction()" onload="ResizeFunction()" width="100%">
-    <div class="TitlePicture"><img width="100%" id="DesktopTitlePictureImg" src="Resources/TitlePic.png"></div>
-    
-    <table width="100%" border="0">
-      <tr width="100%">
-        <td width="100%" colspan="3" height="150px">
-        </td>
-      </tr>
-      <tr width="100%">
-        <td width="20%">
+<body>
 
-        </td>
-        <td width="60%">
-          <div class="MainOverlayText">Hochzeit von Lisa & Paul</div>
-          <div class="Spacer10"></div>
-          <div class="Spacer10"></div>
-          <div class="H1OverlayText">23.05.2026</div>
-          <div class="Spacer10"></div>
-          <div class="Spacer10"></div>
-          <div class="StdOverlayText">Wir freuen uns riesig, dass ihr an unserem großen Tag dabei seid.
-Hier findet ihr alle wichtigen Infos
-Damit ihr entspannt planen könnt und am Hochzeitstag einfach nur genießen müsst ✨</div>
-          <div class="Spacer10"></div>
-          <div class="Spacer10"></div>
-          <div class="H2OverlayText">Zeitplan:</div>
-                    <div class="Spacer10"></div>
-          <div width="80%">
-            <table class="TimeTable" id="TimeTable" width="100%">
-            <tr width="100%" height="40px" class="StdTableText">
-              <td width="10%" height="40px">
-                
-              </td>
-              <td width="15%" style="border-bottom: 1px solid #aa5432;">
-                10:00
-              </td>
-              <td width="40%" height="40px" style="border-bottom: 1px solid #aa5432;">
-                Treffen
-              </td>
-              <td width="25%" height="40px" style="border-bottom: 1px solid #aa5432;">
-                <a href="https://maps.app.goo.gl/XKyiZarh3x42NhnE9" target="_blank" class="StdLink">Wasserturm Hockenheim</a>
-              </td>
-              <td width="10%">
+  <!-- HERO -->
+  <header class="Hero" aria-label="Hero">
+    <!-- wichtig: Pfad anpassen -->
+    <img class="Hero__img" src="Pic.jpeg" alt="" aria-hidden="true" />
+    <div class="Hero__overlay" aria-hidden="true"></div>
 
-              </td>
-            </tr>
-            <tr width="100%" height="40px" class="StdTableText">
-              <td width="10%" height="40px">
-                
-              </td>
-              <td width="15%" style="border-bottom: 1px solid #aa5432;">
-                19:00
-              </td>
-              <td width="40%" height="40px" style="border-bottom: 1px solid #aa5432;">
-                Abendessen
-              </td>
-              <td width="25%" height="40px" style="border-bottom: 1px solid #aa5432;">
-                <a href="https://maps.app.goo.gl/8ffkyS9kFSbDKyBSA" target="_blank" class="StdLink">Rossini Bensheim</a>
-              </td>
-              <td width="10%">
+    <div class="Hero__content">
+      <div class="Hero__badge">Lisa &amp; Paul</div>
+      <h1 class="Hero__title">Wir sagen Ja!</h1>
 
-              </td>
-            </tr>
-          </table>
+      <p class="Hero__subtitle">
+        Aus zwei wird ein Wir – und das möchten wir gemeinsam mit euch feiern.
+        Wir laden euch herzlich ein, diesen besonderen Tag mit uns zu verbringen.
+      </p>
 
-          <div class="Spacer10"></div>
-          <div class="Spacer10"></div>
-          <div class="Spacer10"></div>
-          <div class="Spacer10"></div>
+<!--       <div class="Hero__actions">
+        <a class="Button Button--primary" href="#rsvp">Seid ihr dabei?</a>
+        <a class="Button Button--ghost" href="#ablauf">Zum Ablauf</a>
+      </div> -->
+    </div>
 
-          <div class="StdOverlayText">Bitte sagt uns im Folgenden zu oder ab:</div>
-          <div class="Spacer10"></div>
-          <form id="rsvpForm">
-  <label>
-    <input type="checkbox" class="StdCheckBox" name="standesamt" value="Ja">
-    Ich komme zur standesamtlichen Hochzeit
-  </label><br>
-  <div class="Spacer10"></div>
+    <div class="Hero__fade" aria-hidden="true"></div>
+  </header>
 
-  <label>
-    <input type="checkbox" class="StdCheckBox" name="kaffee" value="Ja">
-    Ich komme zu Kaffee & Kuchen
-  </label><br>
-  <div class="Spacer10"></div>
+  <main class="Page">
 
-  <label>
-    <input type="checkbox" class="StdCheckBox" name="abendessen" value="Ja">
-    Ich komme zum Abendessen (bitte nicht kommen, wird sonst zu teuer)
-  </label><br>
-  <div class="Spacer10"></div>
+    <!-- ABLAUF -->
+    <section class="Section" id="ablauf" aria-label="Ablauf">
+      <div class="Card">
+        <h2 class="H2">Ablauf</h2>
 
-  <label>
-    Name:
-    <input type="text" class="StdTextBox" name="name" placeholder="Dein Name" required>
-  </label><br>
-  <div class="Spacer10"></div>
+        <div class="Flow">
 
-  <button class="StdButton" type="button" title="Absenden" onclick="sendForm()">
-    Absenden
-  </button><br>
-  <div class="Spacer10"></div>
-</form>
+          <article class="FlowItem">
+            <div class="FlowItem__icon" aria-hidden="true">📍</div>
+            <div>
+              <h3 class="H3">Trauung</h3>
 
-        </td>
-        <td width="20%">
-          
-        </td>
-      </tr>
-    </table>
-    
-    
-  </body>
-</html>
+              <div class="MetaRow">
+                <span class="Pill">🕛 12:00 Uhr</span>
+                <span class="Pill">
+                  📍
+                  <a class="Link" href="https://maps.app.goo.gl/XKyiZarh3x42NhnE9" target="_blank" rel="noopener">
+                    Wasserturm Hockenheim
+                  </a>
+                </span>
+              </div>
+
+              <p class="Text">
+                Die Trauung findet um 12 Uhr im Wasserturm statt.
+                <span class="Emph">(Bitte ein paar Minuten früher da sein)!</span>
+              </p>
+              <p class="Text">
+                Im Anschluss nehmen wir uns noch kurz Zeit für Gruppenfotos direkt vor dem Wasserturm.
+              </p>
+            </div>
+          </article>
+
+          <article class="FlowItem">
+            <div class="FlowItem__icon" aria-hidden="true">🥂</div>
+            <div>
+              <h3 class="H3">Sektempfang &amp; Get-together</h3>
+
+              <div class="MetaRow">
+                <span class="Pill">🕛 13:00 Uhr</span>
+                <span class="Pill">
+                  📍
+                  <a class="Link" href="https://maps.app.goo.gl/5fKxuEApSMrUQXNM6" target="_blank" rel="noopener">
+                    Max-Reger-Straße 8, Hockenheim
+                  </a>
+                </span>
+                <span class="Pill">fußläufig vom Wasserturm</span>
+              </div>
+
+              <p class="Text">
+                Nach den Fotos laden wir euch zu einem entspannten Sektempfang mit Kaffee sowie süßem &amp; herzhaftem Gebäck ein.
+              </p>
+              <p class="Text">
+                Hier möchten wir in lockerer Atmosphäre anstoßen, plaudern und den Nachmittag gemeinsam genießen.
+              </p>
+            </div>
+          </article>
+
+          <article class="FlowItem">
+            <div class="FlowItem__icon" aria-hidden="true">🍽️</div>
+            <div>
+              <h3 class="H3">Abendessen</h3>
+
+              <div class="MetaRow">
+                <span class="Pill">🕡 ab 18:30 Uhr</span>
+                <span class="Pill">
+                  📍
+                  <a class="Link" href="https://maps.app.goo.gl/8ffkyS9kFSbDKyBSA" target="_blank" rel="noopener">
+                    Rossini Bensheim
+                  </a>
+                </span>
+              </div>
+
+              <p class="Text">
+                Zum Abendessen freuen wir uns, euch im <span class="Emph">Rossini</span> begrüßen zu dürfen.
+              </p>
+              <p class="Text">
+                Ein gemeinsames Essen, gute Gespräche und ein schöner Ausklang des Tages.
+              </p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- RSVP -->
+    <section class="Section" id="rsvp" aria-label="RSVP">
+      <div class="Card">
+        <h2 class="H2">Seid ihr dabei?</h2>
+
+        <p class="Text">
+          Damit wir gut planen können, gebt uns bitte kurz Bescheid, bei welchen Programmpunkten ihr dabei sein möchtet.
+        </p>
+
+        <p class="Text">
+          <span class="Emph">👉 Bitte kreuzt einfach an, was für euch passt:</span>
+        </p>
+
+        <form id="rsvpForm" class="Form" autocomplete="on">
+          <div class="Form__grid">
+
+            <label class="Toggle">
+              <input type="checkbox" name="trauung" value="Ja">
+              <span class="Toggle__ui" aria-hidden="true"></span>
+              <span class="Toggle__text">Ich komme zur Trauung (12:00 Uhr, Wasserturm Hockenheim)</span>
+            </label>
+
+            <label class="Toggle">
+              <input type="checkbox" name="sektempfang" value="Ja">
+              <span class="Toggle__ui" aria-hidden="true"></span>
+              <span class="Toggle__text">Ich komme zum Sektempfang (ab ca. 13:00 Uhr, Max-Reger-Str. 8, Hockenheim)</span>
+            </label>
+
+            <label class="Toggle">
+              <input type="checkbox" name="abendessen" value="Ja">
+              <span class="Toggle__ui" aria-hidden="true"></span>
+              <span class="Toggle__text">Ich komme zum Abendessen (ab 18:30 Uhr, Rossini Bensheim)</span>
+            </label>
+
+          </div>
+
+          <div class="Form__row">
+            <label class="Field">
+              <span class="Field__label">Name</span>
+              <input class="Field__input" type="text" name="name" placeholder="Dein Name" required />
+            </label>
+          </div>
+
+          <div class="Divider"></div>
+
+          <div class="Text">
+            <span class="Emph">⏰ Rückmeldefrist</span><br>
+            Bitte gebt uns bis spätestens <span class="Deadline">31.03.2026</span> Bescheid,
+            damit wir alles entspannt vorbereiten können.
+          </div>
+
+          <div class="Form__actions">
+            <button class="Button Button--primary" type="button" onclick="sendForm()" id="submitBtn">
+              Absenden
+            </button>
+            <div class="Form__status" id="formStatus" role="status" aria-live="polite"></div>
+          </div>
+
+          <p class="Hint">
+            Solltet ihr nur an einzelnen Programmpunkten teilnehmen können, ist das natürlich völlig in Ordnung – wir freuen uns über jede Zusage.
+          </p>
+        </form>
+      </div>
+    </section>
+
+    <!-- HOTEL -->
+    <section class="Section" id="hotel" aria-label="Übernachtung">
+      <div class="Card">
+        <h2 class="H2">Übernachtung</h2>
+
+        <p class="Text">
+          Für alle, die nach dem Abendessen in Bensheim übernachten möchten, empfehlen wir:
+        </p>
+
+        <div class="Hotel">
+          <div class="Hotel__title">🏨 Hotel Bacchus&nbsp;&nbsp;</div>
+          <span class="Pill">
+                  📍
+                  <a class="Link" href="https://maps.app.goo.gl/Uuaf7EmcbEvVjXj6A" target="_blank" rel="noopener">
+                    Hotel Bacchus
+                  </a>
+                </span>
+          <div class="Hotel__text">
+            Das Hotel liegt zentral in Bensheim und ist vom Restaurant gut erreichbar.
+            Zimmer können individuell und eigenständig gebucht werden.
+          </div>
+        </div>
+
+      </div>
+
+      
+      <div class="Closing">
+          ❤️ Wir freuen uns auf einen unvergesslichen Tag mit euch!
+      </div>
+    </section>
+
+    <footer class="Footer">
+      <div class="Footer__inner">
+        <span>Lisa &amp; Paul</span>
+        <span class="Footer__dot">•</span>
+        <span>23.05.2026</span>
+      </div>
+    </footer>
+
+  </main>
 
   <script>
-  // HIER deine Web-App URL aus Google Apps Script eintragen
-  const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbwXBNCqZ535Z1pOjio4R2db6xfArxtwfDmyoWZMDamKIPCIBat5GxgIci_mA-wgvOY/exec";
+    // Deine Web-App URL aus Google Apps Script
+    const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbwXBNCqZ535Z1pOjio4R2db6xfArxtwfDmyoWZMDamKIPCIBat5GxgIci_mA-wgvOY/exec";
 
-  function sendForm() {
-    const form = document.getElementById('rsvpForm');
-    const formData = new FormData(form);
+    function setStatus(msg, kind){
+      const el = document.getElementById("formStatus");
+      el.textContent = msg || "";
+      el.dataset.kind = kind || "";
+    }
 
-    // Checkboxen, die nicht angehakt sind, explizit auf "Nein" setzen
-    ["standesamt", "kaffee", "abendessen"].forEach(name => {
-      if (!formData.has(name)) {
-        formData.append(name, "Nein");
+    function setLoading(isLoading){
+      const btn = document.getElementById("submitBtn");
+      btn.disabled = !!isLoading;
+      btn.dataset.loading = isLoading ? "true" : "false";
+    }
+
+    async function sendForm() {
+      const form = document.getElementById("rsvpForm");
+      const formData = new FormData(form);
+
+      // Nicht angehakte Checkboxen explizit als "Nein" mitsenden
+      ["trauung","sektempfang","abendessen"].forEach(name => {
+        if (!formData.has(name)) formData.append(name, "Nein");
+      });
+
+      setStatus("", "");
+      setLoading(true);
+
+      try {
+        const res = await fetch(WEBAPP_URL, { method: "POST", body: formData });
+
+        // Apps Script antwortet manchmal mit Text/HTML – ist okay, wir loggen’s nur
+        const text = await res.text();
+        console.log("Antwort vom Server:", text);
+
+        setStatus("Danke! Rückmeldung ist angekommen. ❤️", "ok");
+        form.reset();
+      } catch (err) {
+        console.error("Fehler beim Senden:", err);
+        setStatus("Uff… hat nicht geklappt. Bitte später nochmal versuchen.", "err");
+      } finally {
+        setLoading(false);
       }
-    });
+    }
+  </script>
 
-    fetch(WEBAPP_URL, {
-      method: "POST",
-      body: formData
-    })
-    .then(res => res.text())
-    .then(text => {
-      console.log("Antwort vom Server:", text);
-      alert("Vielen Dank für deine Rückmeldung! ❤️");
-      form.reset();
-    })
-    .catch(err => {
-      console.error("Fehler beim Senden:", err);
-      alert("Da ist etwas schiefgelaufen. Bitte später nochmal versuchen.");
-    });
-  }
-</script>
+</body>
+</html>

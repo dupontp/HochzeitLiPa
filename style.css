@@ -1,98 +1,498 @@
-:root{
-  --background: rgb(22, 22, 22);
-} 
+    /* =========================================================
+       Hochzeit Lisa & Paul — CLEAN ROMANTIC v3 (Stripe-Free)
+       - Kein weißer Streifen
+       - Saubere Überblendung Hero → Page
+       - Ruhig, edel, foto-fokussiert
+       ========================================================= */
 
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-}
+    :root{
+      --bg0:#fff9fb;
+      --bg1:#fffdf8;
+      --bg0-rgb: 255, 249, 251;
 
-/* Hintergrund-Container */
-.TitlePicture {
-  position: fixed;   /* bleibt stehen, egal wie gescrollt wird */
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 110vh;     /* genau eine Bildschirmhöhe */
-  z-index: -1;       /* hinter allem anderen */
-  /* falls das Bild größer ist, nix scrollt raus */
-}
+      --text:#2b2326;
+      --muted: rgba(43,35,38,.68);
 
-/* Das Bild selbst */
-.TitlePicture img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;   /* füllt den Bildschirm, schneidet ggf. etwas ab */
-  display: block;      /* keine weißen Ränder */
-}
+      --accent:#c97a86;
+      --accent2:#f6c7d1;
 
+      --card: rgba(255,255,255,.92);
+      --border: rgba(201,122,134,.14);
+      --shadow: 0 16px 40px rgba(35,20,26,.08);
 
-/* Tabelle / Inhalt */
-table {
-  position: relative;   /* jetzt "positioniert" → z-index greift */
-  z-index: 10;          /* vor dem Bild */
-  color: #aa5432;         /* falls das Bild dunkel ist */
-  border-collapse: collapse;
+      --radius: 22px;
+      --container: 1040px;
+    }
 
-  
-}
+    *{ box-sizing:border-box; }
+    html, body{ height:100%; }
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background: linear-gradient(180deg, var(--bg0) 0%, var(--bg1) 100%);
+      overflow-x:hidden;
+    }
 
-.MainOverlayText {
-  font-size: 100px;     /* px nicht vergessen */
-  font-family: 'Allura', cursive;
-  text-align: center;
-}
-.H1OverlayText {
-  font-size: 50px;     /* px nicht vergessen */
-  font-family: 'Allura', cursive;
-  text-align: center;
-}
+    /* =========================================================
+       HERO
+       ========================================================= */
+    .Hero{
+      position: relative;
+      min-height: 92vh;
+      display:grid;
+      align-items:end;
+      overflow:hidden;
+      background: #000; /* falls Bild kurz lädt */
+    }
 
-.H2OverlayText{
-  font-size: 35px;     /* px nicht vergessen */
-  font-family: 'Times New Roman', Times, serif;
-  text-align: center;
-}
+    .Hero__img{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center 30%;
+      filter: brightness(1.02) saturate(1.06) contrast(1.02);
+      transform: translateZ(0);
+    }
 
-.StdOverlayText {
-  font-size: 20px;     /* px nicht vergessen */
-  font-family: 'Times New Roman', Times, serif;
-  text-align: justify;
-}
+    /* Minimaler Schleier: nur für Textlesbarkeit */
+    .Hero__overlay{
+      position:absolute;
+      inset:0;
+      background: linear-gradient(
+        to bottom,
+        rgba(255,255,255,.04) 0%,
+        rgba(255,255,255,.18) 48%,
+        rgba(var(--bg0-rgb), .25) 100%
+      );
+      pointer-events:none;
+    }
 
-.Spacer10{
-  height: 10px;
-}
+    /* Der entscheidende Teil:
+       Fade endet DECKEND in --bg0 -> keine hellen "Stripe"-Rückläufe */
+    .Hero__fade{
+      position:absolute;
+      left:0; right:0; bottom:0;
+      height: 240px;
+      pointer-events:none;
 
-.StdTableText{
-  font-size: 25px;     /* px nicht vergessen */
-  font-family: 'Times New Roman', Times, serif;
-  text-align: center;
-}
+      background: linear-gradient(
+        to bottom,
+        rgba(var(--bg0-rgb), 0) 0%,
+        rgba(var(--bg0-rgb), .75) 50%,
+        rgba(var(--bg0-rgb), 1) 100%
+      );
+    }
 
-.StdLink{
-  font-size: 25px;     /* px nicht vergessen */
-  font-family: 'Times New Roman', Times, serif;
-  text-align: center;
+    /* Content Card */
+    .Hero__content{
+      position: relative;
+      width: min(560px, calc(100% - 32px));
+      margin: 0 0 100px 56px;
+      padding: 26px 28px;
 
-  color: #aa5432;
-  text-decoration: underline;
-}
+      border-radius: calc(var(--radius) + 10px);
+      background: rgba(255,255,255,.90);
+      border: 1px solid rgba(201,122,134,.14);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
 
-.StdCheckBox{
-  width: 25px;
-  height: 25px;
-  vertical-align: middle;
-}
+      text-align:left;
 
-.StdTextBox{
-  height: 25px;
-  margin-left: 4px;
-}
+      z-index: 50;
+    }
 
-.StdButton{
-  height: 25px;
-  color: #aa5432;
-   margin-left: 4px;
-}
+    .Hero__badge{
+      display:inline-block;
+      padding: 7px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(201,122,134,.14);
+      background: rgba(246,199,209,.32);
+      color: rgba(43,35,38,.75);
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .Hero__title{
+      margin: 12px 0 6px;
+      font-family: Allura, cursive;
+      font-size: clamp(56px, 7vw, 96px);
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .Hero__subtitle{
+      margin: 0;
+      color: rgba(43,35,38,.72);
+      line-height: 1.7;
+      font-size: 16px;
+      max-width: 62ch;
+    }
+
+    .Hero__actions{
+      display:flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    @media (max-width: 820px){
+      .Hero{ min-height: 86vh; }
+      .Hero__content{
+        margin: 0 auto 22px;
+        text-align:center;
+      }
+      .Hero__actions{ justify-content:center; }
+    }
+
+    /* =========================================================
+       PAGE / SECTIONS
+       WICHTIG: oben 0 Padding, weil Fade schon weich reinläuft
+       ========================================================= */
+    .Page{
+      padding: 0 0 70px;
+      background: #fff9fb;
+
+      padding-top: 50px;
+    }
+
+    .Section{
+      width: min(var(--container), calc(100% - 32px));
+      margin: 0 auto 22px;
+    }
+
+    .Card{
+      border-radius: calc(var(--radius) + 10px);
+      border: 1px solid var(--border);
+      background: var(--card);
+      box-shadow: var(--shadow);
+      padding: clamp(18px, 3vw, 28px);
+    }
+
+    .H2{
+      margin: 0 0 14px;
+      font-size: 28px;
+      letter-spacing: .01em;
+    }
+    .H3{
+      margin: 0 0 10px;
+      font-size: 20px;
+      letter-spacing: .01em;
+    }
+    .Text{
+      margin: 10px 0 0;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+    .Emph{
+      color: rgba(43,35,38,.92);
+      font-weight: 700;
+    }
+
+    .Divider{
+      height: 1px;
+      background: rgba(201,122,134,.12);
+      margin: 16px 0;
+    }
+
+    .Link{
+      color: var(--accent);
+      font-weight: 800;
+      text-decoration: none;
+    }
+    .Link:hover{ text-decoration: underline; }
+
+    .MetaRow{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 10px 0 6px;
+    }
+
+    .Pill{
+      display:inline-flex;
+      align-items:center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(201,122,134,.12);
+      background: rgba(246,199,209,.16);
+      color: rgba(43,35,38,.75);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    /* =========================================================
+       FLOW
+       ========================================================= */
+    .Flow{
+      display:grid;
+      gap: 14px;
+      margin-top: 8px;
+    }
+
+    .FlowItem{
+      display:grid;
+      grid-template-columns: 42px 1fr;
+      gap: 14px;
+      padding: 16px 16px;
+
+      border-radius: 18px;
+      border: 1px solid rgba(201,122,134,.12);
+      background: rgba(255,255,255,.92);
+    }
+
+    .FlowItem__icon{
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: rgba(246,199,209,.22);
+      border: 1px solid rgba(201,122,134,.12);
+      font-size: 18px;
+    }
+
+    /* =========================================================
+       BUTTONS
+       ========================================================= */
+    .Button{
+      border: 0;
+      cursor: pointer;
+      padding: 12px 16px;
+      border-radius: 14px;
+      font-weight: 900;
+      text-decoration: none;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 8px;
+      transition: transform .15s ease, filter .15s ease, opacity .15s ease;
+      user-select:none;
+    }
+
+    .Button--primary{
+      color: #fff;
+      background: linear-gradient(180deg, rgba(201,122,134,.92), rgba(246,199,209,.88));
+      box-shadow: 0 16px 40px rgba(201,122,134,.18);
+    }
+    .Button--primary:hover{ transform: translateY(-1px); filter: brightness(1.02); }
+
+    .Button--ghost{
+      color: rgba(43,35,38,.86);
+      background: rgba(255,255,255,.80);
+      border: 1px solid rgba(201,122,134,.14);
+    }
+    .Button--ghost:hover{ transform: translateY(-1px); filter: brightness(1.01); }
+
+    /* loading spinner */
+    .Button[data-loading="true"]{
+      position: relative;
+      padding-right: 44px;
+    }
+    .Button[data-loading="true"]::after{
+      content:"";
+      position:absolute;
+      right: 14px;
+      top: 50%;
+      width: 14px;
+      height: 14px;
+      border-radius: 999px;
+      border: 2px solid rgba(255,255,255,.60);
+      border-top-color: rgba(255,255,255,.98);
+      transform: translateY(-50%);
+      animation: spin .9s linear infinite;
+    }
+    @keyframes spin{ to { transform: translateY(-50%) rotate(360deg);} }
+
+    .Button:disabled{
+      opacity:.65;
+      cursor:not-allowed;
+      transform:none;
+    }
+
+    /* =========================================================
+       FORM
+       ========================================================= */
+    .Form{ margin-top: 10px; }
+    .Form__grid{ display:grid; gap: 10px; }
+
+    .Toggle{
+      display:flex;
+      gap: 12px;
+      align-items:flex-start;
+      padding: 14px 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(201,122,134,.12);
+      background: rgba(255,255,255,.92);
+      position: relative;
+    }
+
+    .Toggle input{
+      position:absolute;
+      opacity:0;
+      pointer-events:none;
+    }
+
+    .Toggle__ui{
+      width: 46px;
+      height: 28px;
+      border-radius: 999px;
+      border: 1px solid rgba(201,122,134,.14);
+      background: rgba(246,199,209,.22);
+      position: relative;
+      flex: 0 0 auto;
+      margin-top: 2px;
+      transition: background .18s ease, border-color .18s ease, box-shadow .18s ease;
+    }
+
+    .Toggle__ui::after{
+      content:"";
+      position:absolute;
+      top: 3px;
+      left: 3px;
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.98);
+      box-shadow: 0 10px 20px rgba(35,20,26,.08);
+      transition: transform .18s ease;
+    }
+
+    .Toggle__text{
+      color: rgba(43,35,38,.82);
+      line-height: 1.45;
+    }
+
+    .Toggle:has(input:checked) .Toggle__ui{
+      background: linear-gradient(180deg, rgba(201,122,134,.86), rgba(246,199,209,.76));
+      border-color: rgba(201,122,134,.35);
+      box-shadow: 0 0 0 4px rgba(201,122,134,.10);
+    }
+    .Toggle:has(input:checked) .Toggle__ui::after{
+      transform: translateX(18px);
+    }
+
+    /* fallback for browsers without :has */
+    @supports not(selector(:has(*))){
+      .Toggle{
+        align-items:center;
+      }
+      .Toggle input{
+        position: static;
+        opacity: 1;
+        pointer-events: auto;
+        width: 18px;
+        height: 18px;
+        margin-top: 0;
+      }
+      .Toggle__ui{ display:none; }
+    }
+
+    .Form__row{ margin-top: 12px; }
+
+    .Field{ display:grid; gap: 6px; }
+    .Field__label{
+      font-size: 12px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(43,35,38,.60);
+      font-weight: 800;
+    }
+    .Field__input{
+      width: 100%;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(201,122,134,.14);
+      background: rgba(255,255,255,.96);
+      color: rgba(43,35,38,.92);
+      outline: none;
+    }
+    .Field__input:focus{
+      border-color: rgba(201,122,134,.45);
+      box-shadow: 0 0 0 4px rgba(201,122,134,.12);
+    }
+
+    .Form__actions{
+      display:flex;
+      align-items:center;
+      gap: 14px;
+      margin-top: 14px;
+      flex-wrap: wrap;
+    }
+
+    .Form__status{
+      font-size: 14px;
+      color: rgba(43,35,38,.62);
+      min-height: 20px;
+    }
+    .Form__status[data-kind="ok"]{ color: rgba(201,122,134,.95); }
+    .Form__status[data-kind="err"]{ color: rgba(180,70,90,.95); }
+
+    .Hint{
+      margin: 14px 0 0;
+      color: rgba(43,35,38,.62);
+      line-height: 1.75;
+    }
+
+    .Deadline{
+      display:inline-block;
+      padding: 2px 8px;
+      border-radius: 10px;
+      background: rgba(246,199,209,.22);
+      border: 1px dashed rgba(201,122,134,.22);
+      font-weight: 900;
+      color: rgba(43,35,38,.82);
+    }
+
+    /* =========================================================
+       HOTEL / CLOSING
+       ========================================================= */
+    .Hotel{
+      margin-top: 10px;
+      padding: 16px 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(201,122,134,.12);
+      background: rgba(255,255,255,.92);
+    }
+    .Hotel__title{
+      font-weight: 900;
+      margin-bottom: 6px;
+
+      display: inline-flex;
+    }
+    .Hotel__text{
+      color: var(--muted);
+      line-height: 1.65;
+    }
+    .Closing{
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 0px solid rgba(201,122,134,.12);
+      font-weight: 900;
+      color: rgba(43,35,38,.78);
+
+      text-align: center;
+    }
+
+    /* =========================================================
+       FOOTER
+       ========================================================= */
+    .Footer{
+      width: min(var(--container), calc(100% - 32px));
+      margin: 18px auto 0;
+    }
+    .Footer__inner{
+      display:flex;
+      justify-content:center;
+      gap: 10px;
+      color: rgba(43,35,38,.55);
+      font-size: 13px;
+      padding: 12px 0;
+    }
+    .Footer__dot{ opacity:.45; }
